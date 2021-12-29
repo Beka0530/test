@@ -27,6 +27,8 @@ const searchCoctail = async () => {
             btnMore.textContent = 'View ditails'
             btnMore.addEventListener('click',  () => {
                 divModal.style.display = "block"
+                // console.log(data.drinks[i].idDrink)
+                getDetail(data.drinks[i].idDrink)
             })
             btnMore.setAttribute('id', 'modalBtn')
             const innerModalDiv = document.createElement('div')
@@ -65,6 +67,14 @@ const searchCoctail = async () => {
             divMain.append(btnMore)
             divMain.append(divModal)
             smallWindow.append(divMain);
+
+
+            inModalBodyContent.innerText =`${data.drinks[i].strIngredient1} ${data.drinks[i].strMeasure1} \n 
+                ${data.drinks[i].strIngredient2} ${data.drinks[i].strMeasure2} \n
+                ${data.drinks[i].strIngredient3} ${data.drinks[i].strMeasure3} \n
+                ${data.drinks[i].strIngredient4} ${data.drinks[i].strMeasure4} \n
+                ${data.drinks[i].strIngredient5} ${data.drinks[i].strMeasure5}`;
+
         }
     }
     catch (e) {
@@ -74,9 +84,9 @@ const searchCoctail = async () => {
         try {
             const ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
             const data = await ingredients.json();
-            console.log(data);
+            // console.log(data);
             for (let i = 0; i < data.drinks.length; i++) {
-                
+
             }
         }catch (e) {
 
@@ -99,6 +109,17 @@ window.onclick = function(event){
         modal.style.display = "none";
     }
 }
+
+async function getDetail (id)  {
+    const res = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + id)
+    const data = await res.json()
+    console.log(data)
+
+}
+
+inputField.addEventListener('change', searchCoctail)
+
+
 
 
 

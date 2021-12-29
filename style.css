@@ -19,3 +19,27 @@
     width: 210px;
     height: 300px;
 }
+.cont {
+    top: 0;
+    left: 0;
+    transform: translate(60%);
+}
+.cont input {
+    width: 500px;
+    height: 30px;
+    font-size: 20px;
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+
+.cont button {
+ padding: 10px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.cont button:hover {
+    background: grey;
+    color: white;
+}
